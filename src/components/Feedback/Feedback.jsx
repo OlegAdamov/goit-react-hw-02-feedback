@@ -1,4 +1,5 @@
 import React from 'react';
+import { Board, Info, Title } from './Feedback.styled';
 
 class Feedback extends React.Component {
   static defaultProps = {
@@ -31,25 +32,27 @@ class Feedback extends React.Component {
 
   render() {
     return (
-      <div className="Feedback">
-        <h1 className="Feedback__leave">Please leave feedback</h1>
-        <button type="button" onClick={this.handleIncrementGood}>
-          Good
-        </button>
-        <button type="button" onClick={this.handleIncrementNeutral}>
-          Neutral
-        </button>
-        <button type="button" onClick={this.handleIncrementBad}>
-          Bad
-        </button>
+      <>
+        <Title>Please leave feedback</Title>
+        <Board>
+          <button type="button" onClick={this.handleIncrementGood}>
+            Good
+          </button>
+          <button type="button" onClick={this.handleIncrementNeutral}>
+            Neutral
+          </button>
+          <button type="button" onClick={this.handleIncrementBad}>
+            Bad
+          </button>
+        </Board>
 
-        <h2 className="Feedback__stat">Statistics</h2>
-        <span className="Feedback__value">Good: {this.state.valueGood}</span>
-        <span className="Feedback__value">
-          Netural: {this.state.valueNeutral}
-        </span>
-        <span className="Feedback__value">Bad: {this.state.valueBad}</span>
-      </div>
+        <Title>Statistics</Title>
+        <Info>
+          <span>Good: {this.state.valueGood}</span>
+          <span>Neutral: {this.state.valueNeutral}</span>
+          <span>Bad: {this.state.valueBad}</span>
+        </Info>
+      </>
     );
   }
 }
