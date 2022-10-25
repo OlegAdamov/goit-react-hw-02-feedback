@@ -3,30 +3,67 @@ import { Board, Info, Title } from './Feedback.styled';
 
 class Feedback extends React.Component {
   static defaultProps = {
-    initialValueGood: 0,
-    initialValueNeutral: 0,
-    initialValueBad: 0,
+    initialGood: 0,
+    initialNeutral: 0,
+    initialBad: 0,
+    initialTotalFeedback: 0,
+    initialPercentageFeedback: 0,
   };
 
   state = {
-    valueGood: this.props.initialValueGood,
-    valueNeutral: this.props.initialValueNeutral,
-    valueBad: this.props.initialValueBad,
+    good: this.props.initialGood,
+    neutral: this.props.initialNeutral,
+    bad: this.props.initialBad,
+    totalFeedback: this.props.initialTotalFeedback,
+    percentageFeedback: this.props.initialPercentageFeedback,
   };
 
   handleIncrementGood = () => {
     this.setState(prevState => {
-      return { valueGood: prevState.valueGood + 1 };
+      return {
+        good: prevState.good + 1,
+        // countTotalFeedback,
+        // countPositiveFeedbackPercentage,
+        totalFeedback: prevState.totalFeedback + 1,
+        // percentageFeedback: Number.parseInt(
+        //   (this.state.good / prevState.totalFeedback) * 100
+        // ),
+      };
     });
   };
   handleIncrementNeutral = () => {
     this.setState(prevState => {
-      return { valueNeutral: prevState.valueNeutral + 1 };
+      return {
+        neutral: prevState.neutral + 1,
+
+        totalFeedback: prevState.totalFeedback + 1,
+        // percentageFeedback: Number.parseInt(
+        //   (this.state.good / prevState.totalFeedback) * 100
+        // ),
+      };
     });
   };
   handleIncrementBad = () => {
     this.setState(prevState => {
-      return { valueBad: prevState.valueBad + 1 };
+      return {
+        bad: prevState.bad + 1,
+        totalFeedback: prevState.totalFeedback + 1,
+        // percentageFeedback: Number.parseInt(
+        //   (this.state.good / prevState.totalFeedback) * 100
+        // ),
+      };
+    });
+  };
+  countTotalFeedback = () => {
+    this.setState({
+      totalFeedback: this.state.good + this.state.neutral + this.state.bad,
+    });
+  };
+  countPositiveFeedbackPercentage = () => {
+    this.setState({
+      //   percentageFeedback: Number.parseInt(
+      //     (this.state.good / prevState.totalFeedback) * 100
+      //   ),
     });
   };
 
@@ -48,9 +85,11 @@ class Feedback extends React.Component {
 
         <Title>Statistics</Title>
         <Info>
-          <span>Good: {this.state.valueGood}</span>
-          <span>Neutral: {this.state.valueNeutral}</span>
-          <span>Bad: {this.state.valueBad}</span>
+          <span>Good: {this.state.good}</span>
+          <span>Neutral: {this.state.neutral}</span>
+          <span>Bad: {this.state.bad}</span>
+          <span>Total: {this.state.totalFeedback}</span>
+          <span>Positive feedback: {this.state.percentageFeedback} %</span>
         </Info>
       </>
     );
