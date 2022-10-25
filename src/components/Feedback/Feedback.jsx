@@ -22,12 +22,10 @@ class Feedback extends React.Component {
     this.setState(prevState => {
       return {
         good: prevState.good + 1,
-        // countTotalFeedback,
-        // countPositiveFeedbackPercentage,
         totalFeedback: prevState.totalFeedback + 1,
-        // percentageFeedback: Number.parseInt(
-        //   (this.state.good / prevState.totalFeedback) * 100
-        // ),
+        percentageFeedback: Math.round(
+          ((this.state.good + 1) / (prevState.totalFeedback + 1)) * 100
+        ),
       };
     });
   };
@@ -35,11 +33,11 @@ class Feedback extends React.Component {
     this.setState(prevState => {
       return {
         neutral: prevState.neutral + 1,
-
         totalFeedback: prevState.totalFeedback + 1,
-        // percentageFeedback: Number.parseInt(
-        //   (this.state.good / prevState.totalFeedback) * 100
-        // ),
+
+        percentageFeedback: Math.round(
+          (this.state.good / (prevState.totalFeedback + 1)) * 100
+        ),
       };
     });
   };
@@ -48,24 +46,24 @@ class Feedback extends React.Component {
       return {
         bad: prevState.bad + 1,
         totalFeedback: prevState.totalFeedback + 1,
-        // percentageFeedback: Number.parseInt(
-        //   (this.state.good / prevState.totalFeedback) * 100
-        // ),
+        percentageFeedback: Math.round(
+          (this.state.good / (prevState.totalFeedback + 1)) * 100
+        ),
       };
     });
   };
-  countTotalFeedback = () => {
-    this.setState({
-      totalFeedback: this.state.good + this.state.neutral + this.state.bad,
-    });
-  };
-  countPositiveFeedbackPercentage = () => {
-    this.setState({
-      //   percentageFeedback: Number.parseInt(
-      //     (this.state.good / prevState.totalFeedback) * 100
-      //   ),
-    });
-  };
+  //   countTotalFeedback = () => {
+  //     this.setState({
+  //       totalFeedback: this.state.good + this.state.neutral + this.state.bad,
+  //     });
+  //   };
+  //   countPositiveFeedbackPercentage = () => {
+  //     this.setState({
+  //       percentageFeedback: Math.round(
+  //         (this.state.good / this.state.totalFeedback) * 100
+  //       ),
+  //     });
+  //   };
 
   render() {
     return (
