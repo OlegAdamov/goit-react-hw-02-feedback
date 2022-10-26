@@ -23,3 +23,9 @@ export const Info = styled.div`
     padding-bottom: 8px;
   }
 `;
+
+export const Notification = styled.p`
+  font-size: 1.5em;
+  margin: 20px;
+  text-align: left;
+`;

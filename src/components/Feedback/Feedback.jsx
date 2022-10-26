@@ -1,13 +1,19 @@
 import React from 'react';
-import { Board, Info, Title } from './Feedback.styled';
+import { Board, Info, Title, Notification } from './Feedback.styled';
+import PropTypes from 'prop-types';
+// import {
+//   incrementGood,
+//   incrementNeutral,
+//   incrementBad,
+// } from './HandleIncrement';
 
-class Feedback extends React.Component {
-  static defaultProps = {
-    initialGood: 0,
-    initialNeutral: 0,
-    initialBad: 0,
-    initialTotalFeedback: 0,
-    initialPercentageFeedback: 0,
+export default class Feedback extends React.Component {
+  static propTypess = {
+    initialGood: PropTypes.number.isRequired,
+    initialNeutral: PropTypes.number.isRequired,
+    initialBad: PropTypes.number.isRequired,
+    initialTotalFeedback: PropTypes.number.isRequired,
+    initialPercentageFeedback: PropTypes.number.isRequired,
   };
 
   state = {
@@ -18,6 +24,9 @@ class Feedback extends React.Component {
     percentageFeedback: this.props.initialPercentageFeedback,
   };
 
+  //   handleIncrementGood = { incrementGood };
+  //   handleIncrementNeutral = { incrementNeutral };
+  //   handleIncrementBad = { incrementBad };
   handleIncrementGood = () => {
     this.setState(prevState => {
       return {
@@ -52,18 +61,6 @@ class Feedback extends React.Component {
       };
     });
   };
-  //   countTotalFeedback = () => {
-  //     this.setState({
-  //       totalFeedback: this.state.good + this.state.neutral + this.state.bad,
-  //     });
-  //   };
-  //   countPositiveFeedbackPercentage = () => {
-  //     this.setState({
-  //       percentageFeedback: Math.round(
-  //         (this.state.good / this.state.totalFeedback) * 100
-  //       ),
-  //     });
-  //   };
 
   render() {
     return (
@@ -82,16 +79,19 @@ class Feedback extends React.Component {
         </Board>
 
         <Title>Statistics</Title>
-        <Info>
-          <span>Good: {this.state.good}</span>
-          <span>Neutral: {this.state.neutral}</span>
-          <span>Bad: {this.state.bad}</span>
-          <span>Total: {this.state.totalFeedback}</span>
-          <span>Positive feedback: {this.state.percentageFeedback} %</span>
-        </Info>
+
+        {this.state.totalFeedback === 0 ? (
+          <Notification>"There is no feedback"</Notification>
+        ) : (
+          <Info>
+            <span>Good: {this.state.good}</span>
+            <span>Neutral: {this.state.neutral}</span>
+            <span>Bad: {this.state.bad}</span>
+            <span>Total: {this.state.totalFeedback}</span>
+            <span>Positive feedback: {this.state.percentageFeedback} %</span>
+          </Info>
+        )}
       </>
     );
   }
 }
-
-export default Feedback;
