@@ -1,15 +1,11 @@
 import Feedback from './Feedback/Feedback';
+import { Title } from './Feedback/Feedback.styled';
 
 export const App = () => {
   return (
     <div>
-      <Feedback
-        initialGood={0}
-        initialNeutral={0}
-        initialBad={0}
-        initialTotalFeedback={0}
-        initialPercentageFeedback={0}
-      />
+      <Title> Please leave feedback </Title>
+      <Feedback />
     </div>
   );
 };
