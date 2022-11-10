@@ -25,9 +25,7 @@ export default class Feedback extends React.Component {
   };
   render() {
     const options = Object.keys(this.state);
-    const good = this.state.good;
-    const neutral = this.state.neutral;
-    const bad = this.state.bad;
+    const { good, neutral, bad } = this.state;
     const total = this.countTotalFeedback;
     const positive = this.countPositiveFeedbackPercentage;
 
